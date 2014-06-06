@@ -25,6 +25,7 @@ import os
 import sys
 import argparse
 from collections import namedtuple
+import codecs
 
 Prototype = namedtuple('Prototype', ['regex', 'modes'])
 HashMode = namedtuple('HashMode', ['name', 'hashcat', 'extended'])
@@ -653,7 +654,7 @@ def main():
         for string in args.strings:
             if os.path.isfile(string):
                 try:
-                    with open(string, "r", encoding="utf-8") as infile:
+                    with codecs.open(string, "r", encoding="utf-8") as infile:
                         print("--File '{0}'--".format(string))
                         for line in infile:
                             if line.strip():
